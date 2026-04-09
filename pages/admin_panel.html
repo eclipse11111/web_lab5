@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма додавання товару</title>
+</head>
+<body>
+  <p>
+    <a href="../index.html">Перейти до реєстрації студента</a> | 
+    <a href="pizza_order.html">Перейти до замовлення піци</a>
+</p>
+  <h1>Додати новий товар</h1>
+  <form action="/add-product" method="post" enctype="multipart/form-data">
+    <div>
+      <label for="name">Назва товару:</label><br>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="article">Артикул:</label><br>
+      <input type="text" id="article" name="article" 
+             pattern="^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$" 
+             title="Тільки великі літери та цифри" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="category">Категорія:</label><br>
+      <select id="category" name="category[]" multiple required>
+        <option value="electronics">Електроніка</option>
+        <option value="clothes">Одяг</option>
+        <option value="books">Книги</option>
+        <option value="home">Товари для дому</option>
+        <option value="sports">Спорт</option>
+      </select>
+    </div>
+    <br>
+
+    <div>
+      <label for="description">Опис:</label><br>
+      <textarea id="description" name="description" rows="5" cols="40"></textarea>
+    </div>
+    <br>
+
+    <div>
+      <label for="price">Ціна:</label><br>
+      <input type="number" id="price" name="price" step="0.01" min="0" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="images">Фотографії товару (до 5 файлів):</label><br>
+      <input type="file" id="images" name="images" multiple accept="image/*" required>
+    </div>
+    <br>
+
+    <div>
+        <button type="submit">Додати товар</button>
+        <button type="reset">Очистити</button>
+    </div>
+  </form>
+
+  <script>
+    const input = document.getElementById('images');
+    input.addEventListener('change', function() {
+        if (this.files.length > 5) {
+            alert("Можна завантажити максимум 5 файлів");
+            this.value = "";
+        }
+    });
+  </script>
+</body>
+</html>
